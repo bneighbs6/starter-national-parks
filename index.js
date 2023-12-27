@@ -69,28 +69,48 @@ Array.prototype.forEach.call(list, function (element) {
 });
 
 
+// Creating list of descriptions
+const descriptions = document.querySelectorAll(".description-display");
 
 
+// Iterationg & Logging descriptions to console with innerText property
+for (let desc of descriptions.values()) {
+  let content = desc.innerText;
 
+  // Truncated text to < 250 characters, added ... if longer
+  if (content.length > 250) {
+    content = content.slice(0, 250);
+    content = content + '<a href="#">...</a>'
+  }
+/*
+ Update HTMLElement using innerText and truncated text
+ // desc.innerText = content;
+  */
 
-//
-/**
-Write a statement that will find all elements on the page containing stars that are not shaded.
+ // b/c of use of HTML in '' above, use innerHTML property to change element
+desc.innerHTML = content; 
+  console.log(content);
+}
 
-Replace the entire string with your own code.
-// star full rating
+/*
+Suppose that you wanted to bold any rating value that is greater than 
+4.7. You would have to select all rating values, check if they match the 
+condition, and add a style to those that do. You can start by selecting 
+all rating values, as follows:
 */
-const halfStars = document.querySelectorAll("span.star.half");
-console.log(halfStars);
 
-/**
- Write a statement that will find the Gateway Arch park element by its ID.
-*/
-const gatewayArch = document.querySelector("#ganp");
-console.log(gatewayArch);
+// Select all rating values
+const ratings = document.querySelectorAll('.rating-display .value')
 
-/**
-Write a statement that will find the element containing the established date for the Gateway Arch park.
-*/
-const established = gatewayArch.querySelector("div.established > div.value");
-console.log(established);
+
+//iterate through list and log each actual rating value using innerText
+for (let rating of ratings) {
+  let ratingValue = parseFloat(rating.innerText);
+// check condition ratingValue > 4.7
+// set fontWeight style to bold
+  if (ratingValue > 4.7) {
+    rating.style.fontWeight = "bold";
+    rating.style.color = "#3ba17c"
+  }
+  console.log(ratingValue);
+}
