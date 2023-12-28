@@ -113,6 +113,12 @@ main {
   text-align: center;
 }
 
+
+.header-statement {
+  color: #ffffff;
+  font-size: 1.2rem;
+} 
+
 @media screen and (min-width: 600px) {
   main {
     grid-template-columns: repeat(2, 1fr);

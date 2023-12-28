@@ -110,7 +110,48 @@ for (let rating of ratings) {
 // set fontWeight style to bold
   if (ratingValue > 4.7) {
     rating.style.fontWeight = "bold";
-    rating.style.color = "#3ba17c"
+    rating.style.color = "#3ba17c";
+    // using classList, replace value class with high-rating 
+    rating.classList.add("high-rating");
+    rating.classList.remove("value")
+ 
   }
   console.log(ratingValue);
 }
+
+// DYNAMICALLY ADD STATEMENT THAT STATES # OF PARKS DISPLAYED
+
+
+// select all parks on the document
+const parks = document.querySelectorAll(".park-display");
+
+// get number of parks using length property
+const numParks = parks.length; 
+
+// create new, empty element
+const newElement = document.createElement("div");
+
+// use innerText to set text of element 
+newElement.innerText = `${numParks} exciting parks to visit`;
+
+//add header-statement to newElement
+newElement.classList.add("header-statement");
+
+// add element to page
+//select <header> element & use appendChild() method to add new element to heade
+const header = document.querySelector("header");
+header.appendChild(newElement)
+
+// you can remove DOM elements using removeChild() method
+
+// Get the parent element of all parks
+const main = document.querySelector("main");
+
+// Select a single park
+const park = main.querySelector(".park-display");
+
+// Remove that park
+main.removeChild(park);
+
+// if you comment out code above, 4th park returns
+// ----- END OF "UPDATING THE DOM" LESSON ----- //
