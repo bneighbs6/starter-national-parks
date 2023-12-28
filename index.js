@@ -274,7 +274,7 @@ nameSorter.addEventListener("click", (event) => {
   const parksArray = Array.from(parksList);
 
   // 5. Sort the array
-  parksArray.sort((parkA, parkb) => {
+  parksArray.sort((parkA, parkB) => {
     const parkAName = parkA.querySelector("h2").innerText;
     const parkBName = parkB.querySelector("h2").innerText;
     if (parkAName < parkBName) {
@@ -291,4 +291,50 @@ nameSorter.addEventListener("click", (event) => {
     main.appendChild(park);
   });
 });
+
+// Do the same for the ratingSorter link. 
+// Select rating sorter link
+const ratingSorter = document.querySelector("#rating-sorter");
+
+// Add event listener
+ratingSorter.addEventListener("click", (event) => {
+// Prevent default 
+event.preventDefault();
+  console.log("You have clicked rating sorter");
+
+// 1. Get main element that contains all the parks
+const main = document.querySelector("main");
+
+// 2. Get NodeList of all the parks
+const parksList = main.querySelectorAll(".park-display");
+
+// 3. Empty the main element
+main.innerHTML = "";
+
+// 4. Convert list to an array 
+const parksArray = Array.from(parksList);
+
+// 5. Sort the array
+parksArray.sort((parkA, parkB) => {
+    const parkARating = parkA.querySelector("h3").innerHTML;
+    const parkBRating = parkB.querySelector("h3").innerHTML;
+    if (parkARating < parkBRating) {
+      return -1;
+    } else if (parkARating > parkBRating) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  // 6. Iterate over sorted array and append each park element to the <main> element.
+parksArray.forEach((park) => {
+  main.appendChild(park);
+  });
+});
+
+
+
+
+
+
 
