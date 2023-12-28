@@ -155,3 +155,22 @@ main.removeChild(park);
 
 // if you comment out code above, 4th park returns
 // ----- END OF "UPDATING THE DOM" LESSON ----- //
+
+
+
+
+// ----- START OF "EVENT LISTENERS" LESSON ----- //
+
+// find a select button on page
+const firstBtn = document.querySelector("button");
+
+// Then call the addEventListener() method on this button
+firstBtn.addEventListener("click", (event) => {
+  console.log("You clicked the button", event)
+});
+
+// observe output in console
+
+
+
+
