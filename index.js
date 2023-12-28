@@ -171,6 +171,124 @@ firstBtn.addEventListener("click", (event) => {
 
 // observe output in console
 
+// Shows specific element that fired the event with the target property
+firstBtn.addEventListener("click", (event) => {
+  console.log(event.target);
+});
+
+/*
+This is especially useful when you attach the same handler to
+multiple elements. For example, you may want to highlight a 
+park when the button associated with that park is clicked. 
+You could attach the same event handler to each of these 
+buttons. Take a look:
+*/
+
+// Select all the buttons for all the parks
+const allBtns = document.querySelectorAll(".rate-button");
+
+// Iterate through the list of buttons and add an event handler to each
+allBtns.forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    console.log("You clicked the button", event.target);
+  });
+});
 
 
+// You get the same result no matter what button you push
+// How do you know which park belongs to the button that was clicked?
+//The <section> element that represents a park is the parent of the 
+//button. Because event.target refers to the button that was clicked, 
+//then using the parentNode property of that button will get you 
+//the <section> element that was clicked. Here's what that looks like:
+
+allBtns.forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    console.log(event.target.parentNode);
+  });
+});
+
+// shows whole section so we can see what code belongs to what button was clicked
+
+// You can manipulate the parentNode 
+allBtns.forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    const park = event.target.parentNode;
+    park.style.backgroundColor = "#c8e6c9"; // changes background color of whole section when clicked
+  });
+});
+
+
+/*
+Suppose that you wanted to give the user the ability to sort the list of 
+parks displayed on the page; you want them to be able to sort by either 
+name or rating. You can add two links and allow the user to click 
+whichever one they wish. You would then get the list of parks from the 
+DOM, perform a sort on the list, and insert the parks back into the DOM 
+in the new order.
+*/
+
+// Added links to HTML 
+
+// Select the `nameSorter` link
+const nameSorter = document.querySelector("#name-sorter"); // #name-sorter = id of name rating link on HTML
+
+// Add an event listener
+nameSorter.addEventListener("click", (event) => {
+  console.log("You clicked the name sorter");
+});
+
+// Prevent simply reloading page with preventDefault() method
+nameSorter.addEventListener("click", (event) => {
+  event.preventDefault();
+  console.log("You clicked the name sorter");
+});
+
+/*
+1. Get the <main> element that contains all the parks.
+
+2. Get a NodeList of all the parks.
+
+3. Empty the <main> element.
+
+4. Convert the NodeList to an array for convenience of sorting.
+
+5. Sort the array using techniques that you learned previously.
+
+6. Iterate through the sorted array and append each park to <main>.
+*/
+
+nameSorter.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  // 1.  Get the main element
+  const main = document.querySelector("main");
+
+  // 2. Get the list of parks
+  const parksList = main.querySelectorAll(".park-display");
+
+  // 3. Empty the main element
+  main.innerHTML = "";
+
+  // 4. Create an array
+  const parksArray = Array.from(parksList);
+
+  // 5. Sort the array
+  parksArray.sort((parkA, parkb) => {
+    const parkAName = parkA.querySelector("h2").innerText;
+    const parkBName = parkB.querySelector("h2").innerText;
+    if (parkAName < parkBName) {
+      return -1;
+    } else if (parkAName > parkBName) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+
+  //6. Iterate over sorted array and append each park element to the <main> element.
+  parksArray.forEach((park) => {
+    main.appendChild(park);
+  });
+});
 
