@@ -333,6 +333,20 @@ parksArray.forEach((park) => {
 });
 
 
+// DOMContentLoaded Example
+console.log("Before!");
+
+window.addEventListener("DOMContentLoaded", (event) => {
+  console.log("Loaded!");
+});
+
+console.log("After!");
+
+// before, after are executed immediately. Loaoded (inside 
+// the DOMContentLoaded) doesn't run until the HTML is
+// fully parsed and loaded into DOM
+
+
 
 
 
