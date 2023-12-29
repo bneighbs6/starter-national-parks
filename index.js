@@ -4,6 +4,12 @@ const submitHandler = (event) => {
     // prevent default
     event.preventDefault();
     console.log("Your form was submitted");
+    // using formData object;
+    const formData = new FormData(event.target);
+
+    // get park name value
+    const name = FormData.get("name");
+    console.log(name);
 }
 
 // Then add main() function that creates event listener for the form submission
