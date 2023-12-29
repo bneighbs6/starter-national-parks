@@ -1,15 +1,26 @@
 // Create a submit handler
 
 const submitHandler = (event) => {
-    // prevent default
     event.preventDefault();
-    console.log("Your form was submitted");
-    // using formData object;
-    const formData = new FormData(event.target);
 
-    // get park name value
-    const name = formData.get("name");
-    console.log(name);
+    const form = event.target;
+    const formData = new FormData(form);
+  
+    const errors = validateForm(formData);
+  
+    // Clear all previous errors
+    const errorElements = document.querySelectorAll(".error");
+    for (let element of errorElements) {
+      element.style.display = "none";
+    }
+  
+    // Display any new errors
+    Object.keys(errors).forEach((key) => {
+      // Find the specific error element
+      const errorElement = document.querySelector(`#${key}-form .error`);
+      errorElement.innerHTML = errors[key];
+      errorElement.style.display = "block";
+    });
 }
 
 // Then add main() function that creates event listener for the form submission
