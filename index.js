@@ -27,7 +27,7 @@ function validateExists(value) {
     if (!validateExists(formData.get("rating"))) {
       errors.rating = "Please enter a rating";
     } else {
-      //check if the raying is a number
+      //check if the rating is a number
       if (!validateNumber(formData.get("rating"))) {
         errors.rating = "Rating must be a number";
       } else {
